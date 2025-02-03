@@ -4,11 +4,6 @@ import { SportRender } from "./SportRender.jsx";
 
 export const SportForm = () => {
 
-    // const start = [
-    //     {"date": "distance"}, 
-    //     {"date": "distance"}
-    // ]    
-
     const [sportList, setSportList] = useState([]);
     let sportListObj = [];
     let sportListArr = [];
@@ -26,37 +21,9 @@ export const SportForm = () => {
             ...sportList, 
             [date]: distance,
         }));
-        // sportListObj = c;
-
-        // sportListArr = Array.from(sportList);
-        // console.log(sportListArr);
-        // console.log(sportListArr);
-
-        // let sportListKey = Object.keys(sportList);
-        // let sportListValue = Object.values(sportList);
-        // const mix = (sportListKey, sportListValue) => {
-            
-        // }
-        // console.log(sportListKey, sportListValue);
-        // sportListArr.forEach((key) => {
-        //     sportListA.push(
-        //         {[key]: value}
-        //     )
-        // });
-
-        // result = sportList.map((key) => {
-        //     <div key={item} className="">
-        //       <div className="list_date">{key}</div> 
-        //       <div className="list__distance">{key[0].key}</div> 
-        //       <div className="list_edit">{key[0].value}</div> 
-        //     </div>
-        // })
 
         console.log(sportList);
     };
-
-
-
 
     return (
         <form className="sport__form" autoComplete="off" onSubmit={handleSubmit}>
