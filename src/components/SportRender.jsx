@@ -17,12 +17,6 @@ export const SportRender = (sportList) => {
         )
     }
 
-    // for(let i = 0; i < k.length; i++){
-    //     arr.push(
-    //         {[k[i]]: v[i]}
-    //     )
-    // };
-
     return (
         <>
             {arr}
