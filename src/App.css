@@ -1,4 +1,4 @@
-@import url("//fonts.googleapis.com/css?family=Work+Sans:300,400,600");
+@import url("//fonts.googleapis.com/css?family=Work+Sans:300,400,600"); */
 
 html,body {
   color:black;
@@ -7,6 +7,11 @@ html,body {
   line-height:1.4;
   height: 100%;
   width: 100%;
+}
+
+button{
+  background-color: aliceblue;
+  color: rgb(38, 71, 101);
 }
 
 .sport__form{
@@ -69,19 +74,10 @@ html,body {
   display: block;
 }
 
-a{
-  display: block;
-  text-decoration: none;
-  color: rgb(38, 71, 101);
+.list__edit{
+  height: 20px;
+  margin: 0px;
 }
-
-a:hover {
-  color: rgb(38, 71, 101);
-  cursor: pointer;
-  text-decoration: none;
-}
-
-/* Media Queries */
 
 @media only screen and (min-width:480px) {
   .item-list {
