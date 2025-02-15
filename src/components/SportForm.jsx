@@ -2,13 +2,14 @@ import "../App.jsx";
 import { useState } from "react";
 
 export const SportForm = () => {
-    const [sportList, setSportList] = useState([]);
+    let [sportList, setSportList] = useState([]);
 
     let date = "";
     let distance = "";
     let sportListArr = [];
     let index = 0;
     let newLine = {};
+    let sportListRender = [];
 
     function test(newLine){
         let testDate = newLine.date;
@@ -26,6 +27,7 @@ export const SportForm = () => {
         } else {
             sportListArr.push(newLine);
         }
+        
         return sportListArr;
     }
 
@@ -44,10 +46,16 @@ export const SportForm = () => {
         }       
 
         test (newLine);
-        sportList = sportListArr;
-        setSportList([
-            sportListArr
-        ]); 
+
+        sportListRender = sportListArr.map(item => (
+            <div key={item.id} className="list__line">
+                <div className="list_date">{item.date}</div> 
+                <div className="list__distance">{item.distance}</div> 
+                <button className="list__edit" onClick={handleDelete}>✘</button>
+            </div>
+        ))
+
+        setSportList(sportListRender); 
     };
 
     const handleDelete = (e) => {
@@ -71,13 +79,7 @@ export const SportForm = () => {
             <button type="submit" className="btn__submit">ОК</button>
 
             <div className="sport__list">
-                {sportList.map((item) => (
-                    <div key={item.id} id={item.id} className="list__line">
-                        <div className="list_date">{item.date}</div> 
-                        <div className="list__distance">{item.distance}</div> 
-                        <button className="list__edit" onClick={handleDelete}>✘</button>
-                    </div>
-                ))}
+                {sportList}
             </div>
         </form>
     );
