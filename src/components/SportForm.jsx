@@ -9,61 +9,46 @@ export const SportForm = () => {
     let sportListArr = [];
     let index = 0;
     let newLine = {};
-    let sportListRender = [];
 
-    function test(newLine){
-        let testDate = newLine.date;
-        let count = 0;
-        let i = 0;
-        sportListArr.forEach(element => {
-            if(element.date === testDate){
-                count++;
-                i = element.id - 1;
-            } 
-        });
-
-        if(count > 0){
-            sportListArr[i].distance += newLine.distance;
-        } else {
-            sportListArr.push(newLine);
-        }
-        
-        return sportListArr;
-    }
-
-    const handleSubmit = (e) => {
+    function handleSubmit(e) {
         e.preventDefault();
         sportListArr = sportList;
-        index ++;
+        index++;
 
-        date = Number(e.target.date.value);
+        date = String(e.target.date.value);
         distance = Number(e.target.distance.value);
 
         newLine = {
-            id: index,
+            id: 0 + index,
             date: date,
             distance: distance
-        }       
+        };
 
-        test (newLine);
+        let testDate = newLine.date;
+        let count = 0;
+        let i = 0;
+        sportList.forEach(element => {
+            if (element.date === testDate) {
+                count++;
+                i = sportList.indexOf(element);
+            }
+        });
 
-        sportListRender = sportListArr.map(item => (
-            <div key={item.id} className="list__line">
-                <div className="list_date">{item.date}</div> 
-                <div className="list__distance">{item.distance}</div> 
-                <button className="list__edit" onClick={handleDelete}>✘</button>
-            </div>
-        ))
-
-        setSportList(sportListRender); 
-    };
+        if (count > 0) {
+            sportList[i].distance += newLine.distance;
+            setSportList(prevState => [...prevState = sportList]);
+        } else {
+            setSportList(prevState => [...prevState, newLine]);
+        }
+        
+    }
 
     const handleDelete = (e) => {
         e.preventDefault();
         let element = e.target;
-        let elementDelete = element.parentElement;
-        let elementDeleteId = elementDelete.id - 1;
-        sportListArr.splice(elementDeleteId, 1);
+        let elementDelete = element.parentElement.id;
+        sportList.splice(elementDelete, 1);
+        setSportList(prevState => [...prevState = sportList]);
     }
         
     return (
@@ -79,7 +64,13 @@ export const SportForm = () => {
             <button type="submit" className="btn__submit">ОК</button>
 
             <div className="sport__list">
-                {sportList}
+                {sportList.map(item => (
+                    <div key={sportList.indexOf(item)} id = {sportList.indexOf(item)} className="list__line">
+                        <div className="list_date">{item.date}</div>
+                        <div className="list__distance">{item.distance}</div>
+                        <button className="list__edit" onClick={handleDelete}>✘</button>
+                    </div>
+                ))}
             </div>
         </form>
     );
